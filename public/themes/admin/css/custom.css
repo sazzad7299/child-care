@@ -1,0 +1,11 @@
+#bottom_bar{
+    display: none;
+}
+@media screen and (max-width: 992px) {
+    #bottom_bar {
+     display: inline;
+    }
+    #side_bar{
+        display: none;
+    }
+  }
