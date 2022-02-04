@@ -4,7 +4,7 @@
         <div class="flex flex-wrap items-center">
             <div class="flex flex-shrink md:w-1/2 justify-center md:justify-start text-white">
                 <a href="{{ url('/') }}" aria-label="Home">
-                    <em class="em em-grinning"></em> <span class="text-xl pl-2 font-bold">Parent</span>
+                    <em class="em em-grinning"></em> <span class="text-xl pl-2 font-bold">Parent's</span>
                 </a>
             </div>
             <div class="flex flex-shrink md:w-1/2 justify-center md:justify-end text-white">
