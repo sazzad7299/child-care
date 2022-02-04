@@ -15,7 +15,26 @@
                 <h2 class="font-bold uppercase text-gray-600">Form</h2>
             </div>
             <div class="p-5">
-                <form class="w-full p-5 text-gray-700">
+                @if(Session::has('success'))
+                <div x-data="{ show: true }" x-show="show" class="bg-green-400 border border-green-700 text-white px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Holy smokes!</strong>
+                    <span class="block sm:inline">{{ Session::get('success') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                      <svg @click="show = false" class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                    </span>
+                  </div>
+                @endif
+                @if(Session::has('error'))
+                <div x-data="{ show: true }" x-show="show" class="bg-red-100 border border-red-700 text-red-400 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Error!</strong>
+                    <span class="block sm:inline">{{ Session::get('error') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                      <svg @click="show = false" class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                    </span>
+                  </div>
+                @endif
+                <form class="w-full px-5 text-gray-700" action="{{ route('admin.addTask') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="flex flex-wrap">
                       <label for="" class="font-bold">Name:</label>
                       <input type="text" name="name" id="" class="py-2 px-3 w-full" placeholder="">
@@ -23,7 +42,30 @@
                     </div>
                     <div class="flex flex-wrap">
                         <label for="" class="font-bold w-full">Instructions:</label>
-                        <textarea name="ins" class="py-2 px-3 w-full" id="summernote" ></textarea>
+                        <textarea name="inst" class="py-2 px-3 w-full" id="summernote" ></textarea>
+                    </div>
+                    <div class="flex flex-wrap py-2">
+                        <div class="md:w-1/2 xl:w-1/2 text-left">
+                            <label for="" class="font-bold w-full">Topic</label>
+                            <input type="text" name="topic" id="" class="py-2 px-3">
+                        </div>
+                        <div class="md:w-1/2 xl:w-1/2 text-right">
+                            <input class="form-control block w-full px-3 py-1.5  sm:ml-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" name="file">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap py-2">
+                        <div class="md:w-1/2 xl:w-1/2 text-left">
+                            <label for="" class="font-bold w-full">Point:</label>
+                            <input type="number" name="point" id="" class="py-2 px-3 ">
+                        </div>
+                        <div class="md:w-1/2 xl:w-1/2 ">
+                            <label for="" class="font-bold w-full">Expair Date:</label>
+                            <input type="date" name="exp_date" id="" class="py-2 px-3">
+                        </div>
+                        
+                    </div>
+                    <div class="flex justify-center"> 
+                        <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-sm" style="cursor: pointer"> 
                     </div>
                 </form>
             </div>
