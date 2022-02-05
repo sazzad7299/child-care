@@ -20,6 +20,12 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 })->middleware(['auth'])->name('home');
+Route::get('/home/items', function () {
+    return view('home');
+})->middleware(['auth']);
+Route::get('/home/assignment', function () {
+    return view('task');
+})->middleware(['auth']);
 
 
 

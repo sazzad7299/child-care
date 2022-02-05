@@ -14,32 +14,27 @@ class TaskController extends Controller
  
         if($request->isMethod('post')){
 
-            $request->validate([
-                'title'=>'required|unique:tasks|max:25',
-                'inst'=>'required',
-                'topic'=>'required',
-                'file'=>'required',
-                'point'=>'required',
-                'exp_date'=>'required|after_or_equal:today',
-            ]);
+            
 
             $data =$request->all();
 
             $file = $request->file('file');
+            // echo "<pre>"; print_r($file); die;
             if ($file) {
                 $extension=$file->getClientOriginalExtension();
-                if($extension== 'png'){
+                
+                if($extension== 'pdf'){
+                    $PDF=time().'.'.$extension;
+                    $dest2='document/file/';
+                    $pdfUrl = $dest2.$PDF;
+                    $file->move($dest2,$PDF);
+                }elseif($extension == 'png'||'PNG' || 'pNg' || 'PNg' || 'jpg' || 'JPg' || 'jpeg'){
                     $Image=time().'.'.$extension;
                     $dest='document/image/';
                     $imageUrl = $dest.$Image;
                     $file->move($dest,$Image);
                 }
-                elseif($extension== 'pdf'){
-                    $PDF=time().'.'.$extension;
-                    $dest2='document/file/';
-                    $pdfUrl = $dest2.$PDF;
-                    $file->move($dest2,$PDF);
-                }else{
+                else{
                     return redirect()->route('admin.addTask')->with('error','Please Upload Image or File');
                 }  
             }
@@ -130,6 +125,11 @@ class TaskController extends Controller
             $task->save();
 
             return redirect()->route('admin.viewTask')->with('success','Task Updated Successfully');
-        }
+    }
+    public function item($id)
+    {
+        $task= Task::findOrFail($id);
+        return view('single')->with(compact('task'));
+    }
    
 }
