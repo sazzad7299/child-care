@@ -14,12 +14,6 @@ class ItemController extends Controller
     {
  
         if($request->isMethod('post')){
-            $request->validate([
-                'title'=>'required|unique:items|max:25',
-                'desc'=>'required',
-                'point'=>'required',
-                'file'=>'required',
-            ]);
 
             $data =$request->all();
 
