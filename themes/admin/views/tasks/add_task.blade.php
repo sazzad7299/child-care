@@ -5,7 +5,7 @@
     <div class="bg-gray-800 ">
         <div class=" flex flex-wrap rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
             <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">Add Task</h1>
-            <p class="font-bold w-full md:w-1/2 xl:w-1/2 text-right text-black "><a href="" class="rounded-sm px-3 bg-blue-400">All Task</a></p>
+            <p class="font-bold w-full md:w-1/2 xl:w-1/2 text-right text-black "><a href="{{route('admin.viewTask')}}" class="rounded-sm px-3 bg-blue-400">All Task</a></p>
         </div>
     </div>
     <div class="w-full  p-6">
@@ -42,14 +42,15 @@
                     </div>
                     <div class="flex flex-wrap">
                         <label for="" class="font-bold w-full">Instructions:</label>
-                        <textarea name="inst" class="py-2 px-3 w-full" id="summernote" ></textarea>
+                        <textarea name="inst" class="py-2 px-3 w-full" id="editor" ></textarea>
                     </div>
                     <div class="flex flex-wrap py-2">
                         <div class="md:w-1/2 xl:w-1/2 text-left">
                             <label for="" class="font-bold w-full">Topic</label>
                             <input type="text" name="topic" id="" class="py-2 px-3">
                         </div>
-                        <div class="md:w-1/2 xl:w-1/2 text-right">
+                        <div class="md:w-1/2 xl:w-1/2 ">
+                            <label for="" class="font-bold w-full">PDF or Image(Optional)</label>
                             <input class="form-control block w-full px-3 py-1.5  sm:ml-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" name="file">
                         </div>
                     </div>
@@ -73,4 +74,15 @@
         <!--/table Card-->
     </div>
 </div>
+<script>
+        ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .then( editor => {
+                        console.log( editor );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+
 @endsection

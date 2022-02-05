@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
       <script defer src="https://unpkg.com/alpinejs@3.2.4/dist/cdn.min.js"></script>
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+
 </head>
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
     @include('layouts.header')
