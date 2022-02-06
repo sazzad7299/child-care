@@ -1,6 +1,12 @@
 #bottom_bar{
     display: none;
 }
+.ck-editor{
+    width: 100%!important;
+}
+.ck-editor__editable{
+    min-height: 200px!important;
+}
 @media screen and (max-width: 992px) {
     #bottom_bar {
      display: inline;

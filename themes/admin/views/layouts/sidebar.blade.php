@@ -52,7 +52,7 @@
                     
                     <!-- Dropdown menu -->
                     <div x-show="open" class="absolute right-0 w-48 py-2 bg-gray-100 rounded-md shadow-xl">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white"> Add Children</a>
+                    
                     <a href="{{route('admin.viewChildren')}}" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
                         View Children
                     </a>

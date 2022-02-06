@@ -6,9 +6,6 @@ use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\Admin\ChildrenController;
 
-
-
-
 Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(function () {
     Route::middleware(['guest:admin'])->group(function () {
         Route::view('/login', 'auth.login')->name('login');
@@ -35,11 +32,10 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
 
         
         // //CHILDREN
-        // Route::match(['get','post'],'/add-item',[ChildrenController::class,'addItem'] )->name('addItem');
         Route::match(['get','post'],'/view-children',[ChildrenController::class,'viewChildren'] )->name('viewChildren');
-        // Route::match(['get','post'],'/edit-item/{id}',[ChildrenController::class,'editItem'] )->name('editItem');
-        // Route::match(['get','post'],'/update-item',[ChildrenController::class,'updateItem'] )->name('updateItem');
-        // Route::match(['get','post'],'/delete-item/{id}',[ChildrenController::class,'deleteItem'] )->name('deleteItem');
+        Route::match(['get','post'],'/edit-student/{id}',[ChildrenController::class,'editStudent'] )->name('editStudent');
+        Route::match(['get','post'],'/update-children',[ChildrenController::class,'updateChildren'] )->name('updateChildren');
+        Route::match(['get','post'],'/delete-children/{id}',[ChildrenController::class,'deleteStudent'] )->name('deleteStudent');
 
 
     });

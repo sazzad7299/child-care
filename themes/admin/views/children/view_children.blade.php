@@ -8,11 +8,10 @@
         </div>
     </div>
 
-    
     <div class="w-full  p-10">
         @if(Session::has('success'))
     <div x-data="{ show: true }" x-show="show" class="bg-green-400 border border-green-700 text-white px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Holy smokes!</strong>
+      
         <span class="block sm:inline">{{ Session::get('success') }}</span>
         <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
           <svg @click="show = false" class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
@@ -33,26 +32,25 @@
         <thead>
           <tr class="bg-gray-100">
             <th class="px-4 py-2 w-20">#</th>
-            <th class="px-4 py-2">Full Name</th>
-            <th class="px-4 py-2">Username</th>
-            <th class="px-4 py-2">Password</th>
+            <th class="px-4 py-2">Name</th>
+            <th class="px-4 py-2">Email</th>
             <th class="px-4 py-2">Action</th>
           </tr>
         </thead>
-        <tbody>
-      
+        
+      <tbody>
+      @php($i=1)
+            @foreach ($students as $student)
             <tr class="bg-gray-100">
-                <td class="border px-4 py-2">1</td>
-                <td class="border px-4 py-2">Zulkar Nine</td>
-                <td class="border px-4 py-2">zulkarnine43</td>
-                <td class="border px-4 py-2">12345678</td>
+                <td class="border px-4 py-2">{{$i++}}</</td>
+                <td class="border px-4 py-2">{{$student->name}}</td>
+                <td class="border px-4 py-2">{{$student->email}}</td>
                 <td>
-                  <a type="btn"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
-                    <a type="btn"  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
+                  <a type="btn" href="{{ route('admin.editStudent',['id'=>$student->id]) }}"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    <a type="btn" href="{{ route('admin.deleteStudent',['id'=>$student->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
                 </td>
               </tr>
-       
-         
+              @endforeach
         </tbody>
       </table>
     </div>
