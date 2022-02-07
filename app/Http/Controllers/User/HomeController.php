@@ -145,9 +145,11 @@ class HomeController extends Controller
             $purchase->save();
 
             $sum=$TotalSum - $data['point'];
+
+            \DB::table('std_assignments')
+            ->where('user_id',$data['user_id'])
+            ->update(['point_sum' => $sum]);
             
-            \DB::table('std_assignments')->where('user_id', $data['user_id'])
-                                ->where('status','1')->update(['point_sum'=>$sum]);
             return redirect()->back()->with('success','Item Buy Successfully');
             }else{
                 return redirect()->back()->with('success','Not enoungh point for buy this item');
@@ -156,7 +158,9 @@ class HomeController extends Controller
         }
 
 
-
-
-
+    public function showOrders(Request $request)
+        {
+        $purchases=Purchase::where('user_id',$request->user_id)->get();
+        return view('order.view_purchase',compact('purchases'));
+      }
 }

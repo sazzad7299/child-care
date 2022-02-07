@@ -35,7 +35,6 @@
             <th class="px-4 py-2">user_id</th>
             <th class="px-4 py-2">Name</th>
             <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Action</th>
           </tr>
         </thead>
         
@@ -48,7 +47,7 @@
                 <td class="border px-4 py-2">{{$student->name}}</td>
                 <td class="border px-4 py-2">{{$student->email}}</td>
                 <td>
-                  <a type="btn" href="{{ route('admin.editStudent',['id'=>$student->id]) }}"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                  {{-- <a type="btn" href="{{ route('admin.editStudent',['id'=>$student->id]) }}"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a> --}}
                     {{-- <a type="btn" href="{{ route('admin.deleteStudent',['id'=>$student->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a> --}}
                 </td>
               </tr>

@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <div class="card m-4">
                 @if($task->img == "NULL")
-                <embed src="{{asset($task->pdf)}}"  height= "200">
+                <embed src="{{asset($task->pdf)}}" height= "200">
                 @else
                 <img class="card-img-top" src="{{asset($task->img)}}" alt="{{ $task->img }}" style="max-height: 200px">
                 @endif

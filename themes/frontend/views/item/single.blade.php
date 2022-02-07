@@ -12,12 +12,13 @@
             
             <div class="card m-4">
                 <img class="card-img-top" src="{{asset($item->img)}}" height="400" alt="{{ $item->img }}">
-                {{-- <a href="{{asset($item->img)}}" download class="btn btn-primary" style="width: 160px">Download</a> --}}
-                <a href="#" class="btn btn-danger col-md-4 mx-auto my-3">Buy</a> 
-                
+                {{-- <a href="{{asset($item->img)}}" download class="btn btn-primary" style="width: 160px">Download</a> --}}                
                 <div class="card-body">
-                    <div><h1><strong>Point:</strong> {{$item->point}}</h1></div>  
+                
+                    <a class="item-point"><i class="fas fa-trophy"></i>{{ $item->point }}</a>
                     <div class="card-text">{!! $item->desc !!}</div>
+                    <a href="#" class="btn btn-danger btn-block">Buy</a> 
+
                 </div>
             </div>
         </div>

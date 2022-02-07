@@ -4,7 +4,6 @@
 <div class="container">
     <div class="text-center">
         <h1 class="text-success">{{Session::get('success')}}</h1>
-       
     </div>
     <div class="row">
         <div class="col-md-8 col-sm-8">
@@ -15,12 +14,11 @@
                 <embed src="{{asset($task->pdf)}}" width="100%" height="600px">
                 <a href="{{asset($task->pdf)}}" download class="btn btn-primary my-3 mx-auto" style="width: 160px">Download</a>
                 @else
-                <img class="card-img-top" src="{{asset($task->img)}}" alt="{{ $task->img }}">
-                <a href="{{asset($task->img)}}" download class="btn btn-primary my-3 mx-auto" style="width: 160px">Download</a>
+                <img class="card-img-top" src="{{asset($task->img)}}" alt="{{ $task->img }}" height="400">
+                <a href="{{asset($task->img)}}" download class="btn btn-primary my-3 mx-auto" style="width: 100px">Download</a>
                 @endif
                 <div class="card-body">
-                    <div class="card-text">{!! $task->inst !!}</div>
-                   
+                    <div class="card-text text-center"><strong>{!! $task->inst !!}</strong></div>
                 </div>
             </div>
         </div>

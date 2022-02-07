@@ -60,8 +60,10 @@
               {{-- status --}}              
                 @if($assignment->status==1)
                 <td class="border px-4 py-2">Approved</td>
-                @else
+                @elseif($assignment->status==0)
                 <td class="border px-4 py-2">Pending</td>
+                @else
+                <td class="border px-4 py-2">Return</td>
                 @endif
 
                 <td class="border px-4 py-2">

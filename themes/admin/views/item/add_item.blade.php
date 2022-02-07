@@ -37,14 +37,14 @@
                     @csrf
                     <div class="flex flex-wrap">
                       <label for="" class="font-bold">Title:</label>
-                      <input type="text" name="title" id="" class="py-2 px-3 w-full" placeholder="">
+                      <input type="text" name="title" id="" class="py-2 px-3 w-full" placeholder="" required>
                       @error('title')
                       <span class="text-danger">{{$message}}</span>
                      @enderror
                     </div>
                     <div class="flex flex-wrap">
                         <label for="" class="font-bold w-full">Description:</label>
-                        <textarea name="desc" class="py-2 px-3 w-full" id="editor" ></textarea>
+                        <textarea name="desc" class="py-2 px-3 w-full" id="editor" required ></textarea>
                     @error('desc')
                       <span class="text-danger">{{$message}}</span>
                      @enderror
@@ -52,14 +52,14 @@
                     <div class="flex flex-wrap py-2">
                         <div class="md:w-1/2 xl:w-1/2 text-left">
                             <label for="" class="font-bold w-full">Point:</label>
-                            <input type="number" name="point" id="" class="py-2 px-3 ">
+                            <input type="number" name="point" id="" class="py-2 px-3 " required>
                             @error('point')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                         </div>
                         <div class="md:w-1/2 xl:w-1/2 ">
-                            <label for="" class="font-bold w-full">Image(Optional)</label>
-                            <input class="form-control block w-full px-3 py-1.5  sm:ml-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" name="file">
+                            <label for="" class="font-bold w-full">Image</label>
+                            <input class="form-control block w-full px-3 py-1.5  sm:ml-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" type="file" name="file" required>
                             @error('file')
                             <span class="text-danger">{{$message}}</span>
                             @enderror

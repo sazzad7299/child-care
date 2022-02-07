@@ -45,6 +45,9 @@ Route::get('item/{id}', [HomeController::class, 'item'])->name('item')
 Route::post('item/buy', [HomeController::class, 'item_buy'])->name('item_buy')
 ->middleware(['auth']);
 
+Route::match(['get','post'],'/show/Orders',[HomeController::class,'showOrders'] )->name('showOrders');
+
+
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

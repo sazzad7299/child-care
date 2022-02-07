@@ -33,7 +33,6 @@
                 {{ config('app.name') }}
                 </a>
                 @else
-                
                 <h2>Hi!{{ Auth::user()->name }}</h2>
                 @endif
                 
@@ -72,12 +71,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('showItem')}}">Item's</a>
                         </li>
+                        <li class="nav-item">
+                            <form action="{{ route('showOrders') }}" method="post">
+                                @csrf
+                                 <input type="hidden" name="user_id" value="{{Auth::user()->id }}" >
+                                <input type="submit" value="Orders's" class="nav-link">
+                            </form> 
+                        </li>
             
                                             
                         <li class="nav-item">
                             <a class="nav-link"> <i class="fas fa-trophy"></i>
                       
-                        @php( $currentDay = Carbon\Carbon::tomorrow()->format('l')=="Monday")                 
+                        @php( $currentDay = Carbon\Carbon::tomorrow()->format('l')=="Tuesday")                 
                             @if($currentDay)
                                 @php($sum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
                                 ->where('status','1')->sum('point')) 
