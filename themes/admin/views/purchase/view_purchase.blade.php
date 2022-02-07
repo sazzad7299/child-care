@@ -4,12 +4,13 @@
 
     <div class="bg-gray-800 ">
         <div class=" flex flex-wrap rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Children</h1>
+            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Purchase</h1>
         </div>
     </div>
 
     <div class="w-full  p-10">
-        @if(Session::has('success'))
+
+    @if(Session::has('success'))
     <div x-data="{ show: true }" x-show="show" class="bg-green-400 border border-green-700 text-white px-4 py-3 rounded relative" role="alert">
       
         <span class="block sm:inline">{{ Session::get('success') }}</span>
@@ -28,31 +29,40 @@
         </div>
       @endif
 
-    <table class="table-fixed w-full">
+      <table class="table-fixed w-full">
         <thead>
-          <tr class="bg-gray-100 ">
-            <th class="px-4 py-2">#</th>
-            <th class="px-4 py-2">user_id</th>
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Action</th>
-          </tr>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 w-20">#.</th>
+                <th class="px-4 py-2">user id</th>
+                <th class="px-4 py-2">item id</th>
+                <th class="px-4 py-2">Point</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Action</th>
+            </tr>
         </thead>
-        
-      <tbody>
-      @php($i=1)
-            @foreach ($students as $student)
-            <tr class="bg-gray-100 ">
-                <td class="border px-4 py-2 ">{{$i++}}</</td>
-                <td class="border px-4 py-2">{{$student->id}}</td>
-                <td class="border px-4 py-2">{{$student->name}}</td>
-                <td class="border px-4 py-2">{{$student->email}}</td>
-                <td>
-                  <a type="btn" href="{{ route('admin.editStudent',['id'=>$student->id]) }}"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
-                    {{-- <a type="btn" href="{{ route('admin.deleteStudent',['id'=>$student->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a> --}}
+        <tbody>
+          @php($i=1)
+          @foreach ($purchases as $purchase)
+            <tr class="bg-gray-100">
+                <td class="border px-4 py-2">{{$i++}}</td>
+                <td class="border px-4 py-2">{{$purchase->user_id}}</td>
+                <td class="border px-4 py-2">{{$purchase->item_id }}</td>
+                <td class="border px-4 py-2">{{$purchase->point}}</td>
+               
+                @if($purchase->status==1)
+                <td class="border px-4 py-2">Approved</td>
+                @else
+                <td class="border px-4 py-2">Pending</td>
+                @endif
+                <td class="border px-4 py-2">
+                    @if($purchase->status==1)
+                    <a  href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-red-500 hover:bg-blue-700 text-white font-bold px-4 rounded">Pending</a>
+                    @else
+                    <a href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded ">Approved</a>
+                    @endif
                 </td>
-              </tr>
-              @endforeach
+            </tr>
+            @endforeach
         </tbody>
       </table>
     </div>

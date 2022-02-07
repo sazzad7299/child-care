@@ -76,6 +76,7 @@
                                             
                         <li class="nav-item">
                             <a class="nav-link"> <i class="fas fa-trophy"></i>
+                      
                         @php( $currentDay = Carbon\Carbon::tomorrow()->format('l')=="Monday")                 
                             @if($currentDay)
                                 @php($sum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
@@ -86,7 +87,11 @@
 
                             @php($TotalSum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
                             ->where('status','1')->max('point_sum'))
-                            {{$TotalSum}}
+                            @if($TotalSum)
+                               {{$TotalSum}}
+                            @else
+                                 0
+                            @endif
                         
                             </a>
                         </li>
@@ -107,6 +112,7 @@
         </nav>
 
         <main class="py-4">
+            <h1 class="text-success">{{Session::get('success')}}</h1>
             @yield('content')
         </main>
     </div>

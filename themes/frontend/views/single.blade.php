@@ -27,24 +27,35 @@
         <div class="col-md-4 col-sm-4">
             <div class="card" >
                 <div class="card-body">
-
+                
             @php($data= App\Models\Std_assignment::where('user_id',Auth::user()->id)
             ->where('task_id',$task->id)->first())
 
                 @if(empty($data))
+                <h5 class="card-title">Submit Your Assingment</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ $task->point }} Points</h6>
+                <form action="{{ route('PostAssignment') }}" method="post" enctype="multipart/form-data">
+                  @csrf
+                   <input  type="hidden" name="user_id" value="{{ Auth::user()->id }}" >
+                   <input  type="hidden" name="task_id" value="{{$task->id}}" >
+                   <input class="form-control" type="file" name="file" accept=".png, .jpg, .pdf" id="formFile">
+                    <input type="submit" value="Submit" class="btn btn-primary mt-4">
+                </form>
+
+                  @elseif($data->status==3)
+
                   <h5 class="card-title">Submit Your Assingment</h5>
                   <h6 class="card-subtitle mb-2 text-muted">{{ $task->point }} Points</h6>
-                  <form action="{{ route('PostAssignment') }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('UpdateAssignment') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input  type="hidden" name="user_id" value="{{ Auth::user()->id }}" >
-                     <input  type="hidden" name="task_id" value="{{$task->id}}" >
+                    <input type="hidden" name="id" value="{{$data->id}}">
                      <input class="form-control" type="file" name="file" accept=".png, .jpg, .pdf" id="formFile">
-                      <input type="submit" value="Submit" class="btn btn-primary mt-4">
+                      <input type="submit" value="Update" class="btn btn-primary mt-4">
                   </form>
-                  
-                  @else
 
+                  @else
                   <h5 class="card-title">Already Submit Your Assingment</h5>
+                 
                   @endif
 
                 </div>

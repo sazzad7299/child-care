@@ -35,4 +35,5 @@ class ChildrenController extends Controller
         $student->delete();
         return redirect()->route('admin.viewChildren')->with('success','Children Delete Successfully');
     }
+   
 }

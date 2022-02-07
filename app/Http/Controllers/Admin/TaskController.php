@@ -6,6 +6,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Input\Input;
+use App\Models\Std_assignment;
 
 class TaskController extends Controller
 {
@@ -126,5 +127,7 @@ class TaskController extends Controller
 
             return redirect()->route('admin.viewTask')->with('success','Task Updated Successfully');
     }
+
+
    
 }

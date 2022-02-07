@@ -36,7 +36,13 @@ Route::get('assignment/{id}', [HomeController::class, 'assignment'])->name('assi
 Route::post('post/assignment', [HomeController::class, 'PostAssignment'])->name('PostAssignment')
 ->middleware(['auth']);
 
+Route::post('update/assignment', [HomeController::class, 'UpdateAssignment'])->name('UpdateAssignment')
+->middleware(['auth']);
+
 Route::get('item/{id}', [HomeController::class, 'item'])->name('item')
+->middleware(['auth']);
+
+Route::post('item/buy', [HomeController::class, 'item_buy'])->name('item_buy')
 ->middleware(['auth']);
 
 

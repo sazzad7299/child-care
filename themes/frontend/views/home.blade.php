@@ -6,7 +6,6 @@
         <h1>Assignment</h1>
     </div>
     <div class="row">
-        
         @foreach($tasks as $task)
         <div class="col-md-4">
             <div class="card m-4">
@@ -36,9 +35,13 @@
                     <div><h1><strong>Point:</strong> {{$item->point}}</h1></div> 
                     <div class="card-text">{!! Str::limit($item->desc, 200)  !!}</div>
                     <a href="{{ url('item/'.$item->id) }}" class="btn btn-primary">View</a>
-                    <a href="#" class="btn btn-danger">Buy</a> 
-                    
-
+                    <form action="{{ route('item_buy') }}" method="post">
+                        @csrf
+                         <input  type="hidden" name="user_id" value="{{ Auth::user()->id }}" >
+                         <input class="form-control" type="hidden" name="item_id" value="{{$item->id}}">
+                         <input class="form-control" type="hidden" name="point" value="{{$item->point}}">
+                          <input type="submit" value="Buy" class="btn btn-danger">
+                    </form>
                 </div>
             </div>
         </div>

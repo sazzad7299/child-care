@@ -4,11 +4,12 @@
 
     <div class="bg-gray-800 ">
         <div class=" flex flex-wrap rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Children</h1>
+            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Assignment</h1>
         </div>
     </div>
 
     <div class="w-full  p-10">
+
         @if(Session::has('success'))
     <div x-data="{ show: true }" x-show="show" class="bg-green-400 border border-green-700 text-white px-4 py-3 rounded relative" role="alert">
       
@@ -28,31 +29,48 @@
         </div>
       @endif
 
-    <table class="table-fixed w-full">
+      <table class="table-fixed w-full">
         <thead>
-          <tr class="bg-gray-100 ">
-            <th class="px-4 py-2">#</th>
-            <th class="px-4 py-2">user_id</th>
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Email</th>
-            <th class="px-4 py-2">Action</th>
-          </tr>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 w-20">#.</th>
+                <th class="px-4 py-2">User_id</th>
+                <th class="px-4 py-2">Task_id</th>
+                <th class="px-4 py-2">Point</th>
+                <th class="px-4 py-2">Image</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Action</th>
+            </tr>
         </thead>
-        
-      <tbody>
-      @php($i=1)
-            @foreach ($students as $student)
-            <tr class="bg-gray-100 ">
-                <td class="border px-4 py-2 ">{{$i++}}</</td>
-                <td class="border px-4 py-2">{{$student->id}}</td>
-                <td class="border px-4 py-2">{{$student->name}}</td>
-                <td class="border px-4 py-2">{{$student->email}}</td>
-                <td>
-                  <a type="btn" href="{{ route('admin.editStudent',['id'=>$student->id]) }}"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
-                    {{-- <a type="btn" href="{{ route('admin.deleteStudent',['id'=>$student->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a> --}}
+        <tbody>
+          @php($i=1)
+          @foreach ($assignments as $assignment)
+            <tr class="bg-gray-100">
+                <td class="border px-4 py-2">{{$i++}}</td>
+                <td class="border px-4 py-2">{{$assignment->user_id}}</td>
+                <td class="border px-4 py-2">{!!$assignment->task_id !!}</td>
+                <td class="border px-4 py-2">{{$assignment->point}}</td>
+             {{-- img or pdf --}}
+                @if($assignment->pdf=="NULL")
+                <td class="border px-4 ">
+                  <img src="{{asset($assignment->img)}}" alt="">
                 </td>
-              </tr>
-              @endforeach
+                @elseif($assignment->img=="NULL")
+                <td class="border px-4 py-2">{{$assignment->pdf}}</td>
+                @endif
+              {{-- status --}}              
+                @if($assignment->status==1)
+                <td class="border px-4 py-2">Approved</td>
+                @else
+                <td class="border px-4 py-2">Pending</td>
+                @endif
+
+                <td class="border px-4 py-2">
+                    <a type="btn" href="{{ route('admin.assignment_details',['id'=>$assignment->id]) }}" class="bg-yellow-400	hover:bg-yellow-700 text-white font-bold  px-4 rounded">View</a>
+        
+                    {{-- <a type="btn" href="" class="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded">Return</a> --}}
+                </td>
+            </tr>
+            @endforeach
         </tbody>
       </table>
     </div>
