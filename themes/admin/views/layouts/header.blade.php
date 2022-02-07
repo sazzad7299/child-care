@@ -3,7 +3,7 @@
     <nav aria-label="menu nav" class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
         <div class="flex flex-wrap items-center">
             <div class="flex flex-shrink md:w-1/2 justify-center md:justify-start text-white">
-                <a href="{{ url('/') }}" aria-label="Home">
+                <a href="{{ route('admin.home') }}" aria-label="Home">
                     <em class="em em-grinning"></em> <span class="text-xl pl-2 font-bold">Parent's</span>
                 </a>
             </div>

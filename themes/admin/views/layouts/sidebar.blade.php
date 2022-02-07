@@ -16,6 +16,10 @@
                     <a href="{{route('admin.viewTask')}}" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
                         View Task
                     </a>
+
+                    <a href="{{route('admin.viewAssignment')}}" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
+                        View Assignment
+                    </a>
                     </div>
                 </li>
                 <li class="flex-1" x-data="{ open: false }" @mouseleave="open = false" class="relative">
@@ -52,14 +56,14 @@
                     
                     <!-- Dropdown menu -->
                     <div x-show="open" class="absolute right-0 w-48 py-2 bg-gray-100 rounded-md shadow-xl">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white"> Add Children</a>
+                    
                     <a href="{{route('admin.viewChildren')}}" class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-gray-400 hover:text-white">
                         View Children
                     </a>
                     </div>
                 </li>
                 <li class="mr-3 flex-1">
-                    <a href="#" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                    <a href="{{route('admin.viewPurchase')}}" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
                         <i class="fa fa-wallet pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Purchess</span>
                     </a>
                 </li>

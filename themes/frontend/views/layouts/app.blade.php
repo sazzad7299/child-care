@@ -30,7 +30,7 @@
                 
                 @guest
                 <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name') }}
                 </a>
                 @else
                 
@@ -64,14 +64,36 @@
                             @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="home/items">Item's</a>
+                            <a class="nav-link" href="{{route('home')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="home/assignment">Assignment</a>
+                            <a class="nav-link" href="{{route('show_assignment')}}">Assignment</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('showItem')}}">Item's</a>
+                        </li>
+            
                                             
                         <li class="nav-item">
-                            <a class="nav-link"> <i class="fas fa-trophy"></i>20</a>
+                            <a class="nav-link"> <i class="fas fa-trophy"></i>
+                      
+                        @php( $currentDay = Carbon\Carbon::tomorrow()->format('l')=="Monday")                 
+                            @if($currentDay)
+                                @php($sum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
+                                ->where('status','1')->sum('point')) 
+                                @php(\DB::table('std_assignments')->where('user_id', Auth::user()->id)
+                                ->where('status','1')->update(['point_sum'=>$sum]))
+                            @endif
+
+                            @php($TotalSum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
+                            ->where('status','1')->max('point_sum'))
+                            @if($TotalSum)
+                               {{$TotalSum}}
+                            @else
+                                 0
+                            @endif
+                        
+                            </a>
                         </li>
                         <li class="nav-item" >
                             <a class="nav-link" href="{{ route('logout') }}"
@@ -90,6 +112,7 @@
         </nav>
 
         <main class="py-4">
+            <h1 class="text-success">{{Session::get('success')}}</h1>
             @yield('content')
         </main>
     </div>
