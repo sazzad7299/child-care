@@ -28,7 +28,7 @@ class AssignmentController extends Controller
             $assignment->save();
         }
     
-        return redirect()->route('admin.viewAssignment')->with('success','Status Updated Successfully');
+        return redirect()->back()->with('success','Status Updated Successfully');
     }
 
     public function returnStatus($id){
@@ -36,7 +36,7 @@ class AssignmentController extends Controller
             $assignment->status=3;
             $assignment->save();
 
-        return redirect()->route('admin.viewAssignment')->with('success','return Successfully');
+        return redirect()->back()->with('success','Return Successfully');
     }
 
     public function assignment_details($id)
@@ -45,5 +45,12 @@ class AssignmentController extends Controller
         $user=User::where('id',$assignment->user_id)->first();
         $task=Task::where('id',$assignment->task_id)->first();
         return view('tasks.assignment_details')->with(compact('assignment','user', 'task'));
+    }
+    public function add_extra_point(Request $request){
+        $assignment=Std_assignment::findOrFail($request->id);
+            $assignment->point +=$request->point;
+            $assignment->status=1;
+            $assignment->save();
+        return redirect()->back()->with('success','Extra Point Added Successfully');
     }
 }

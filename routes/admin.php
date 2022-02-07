@@ -43,11 +43,11 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
         Route::match(['get','post'],'/assignment_details/{id}',[AssignmentController::class,'assignment_details'] )->name('assignment_details');
         Route::match(['get','post'],'/edit-editStatus/{id}',[AssignmentController::class,'editStatus'] )->name('editStatus');
         Route::match(['get','post'],'/edit-returnStatus/{id}',[AssignmentController::class,'returnStatus'] )->name('returnStatus');
-
+        Route::match(['get','post'],'/add/extra_point',[AssignmentController::class,'add_extra_point'] )->name('add_extra_point');
         // viewPurchase
         
         Route::match(['get','post'],'/view-Purchase',[PurchaseController::class,'viewPurchase'] )->name('viewPurchase');
         Route::match(['get','post'],'/edit-PurchaseStatus/{id}',[PurchaseController::class,'editPurchaseStatus'] )->name('editPurchaseStatus');
-
+       
     });
 });
