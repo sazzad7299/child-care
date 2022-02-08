@@ -146,10 +146,14 @@ class HomeController extends Controller
 
             $sum=$TotalSum - $data['point'];
 
-            \DB::table('std_assignments')
-            ->where('user_id',$data['user_id'])
-            ->update(['point_sum' => $sum]);
-            
+            $users=\DB::table('std_assignments')->where('user_id',$data['user_id'])
+            ->where('status','1')->get();
+
+            foreach($users as $user){
+                \DB::table('std_assignments')
+                ->where('user_id',$data['user_id'])
+                ->update(['point_sum' => $sum]);
+            } 
             return redirect()->back()->with('success','Item Buy Successfully');
             }else{
                 return redirect()->back()->with('success','Not enoungh point for buy this item');

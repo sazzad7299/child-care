@@ -22,7 +22,7 @@
                      <input class="form-control" type="hidden" name="point" value="{{$item->point}}">
                      <br><br>
                         <a href="{{ url('item/'.$item->id) }}" class="btn btn-primary btn-block">View</a>
-                        <input type="submit" value="Buy" class="btn btn-danger btn-block">
+                        <input type="submit" onclick="show_alert();" value="Buy" class="btn btn-danger btn-block">
                 </form> 
             </div>
         </div>
@@ -30,4 +30,9 @@
     @endforeach
     </div>
 </div>
+<script>
+    function show_alert() {
+      alert("Are You sure want to buy");
+    }
+    </script>
 @endsection

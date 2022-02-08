@@ -55,7 +55,9 @@
         <a  href="{{ route('admin.editStatus',['id'=>$assignment->id]) }}" class="bg-yellow-500 hover:bg-blue-700 text-white font-bold px-4 rounded">Pending</a>
   
         @endif
+        @if($assignment->status==3)
         <a  href="{{ route('admin.returnStatus',['id'=>$assignment->id]) }}" class="bg-red-500 hover:bg-blue-700 text-white font-bold px-4 rounded">Return</a>
+        @endif
 
         <form action="{{ route('admin.add_extra_point') }}" method="post">
           @csrf

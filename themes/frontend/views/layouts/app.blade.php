@@ -118,7 +118,9 @@
         </nav>
 
         <main class="py-4">
-            <h1 class="text-success">{{Session::get('success')}}</h1>
+            <div class="text-center">
+                <h1 class="text-success">{{Session::get('success')}}</h1>
+            </div>
             @yield('content')
         </main>
     </div>
