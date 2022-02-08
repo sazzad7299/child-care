@@ -33,8 +33,9 @@
         <thead>
             <tr class="bg-gray-100">
                 <th class="px-4 py-2 w-20">#.</th>
-                <th class="px-4 py-2">user id</th>
-                <th class="px-4 py-2">item id</th>
+                <th class="px-4 py-2">user Name</th>
+                <th class="px-4 py-2">item Name</th>
+                <th class="px-4 py-2">item Image</th>
                 <th class="px-4 py-2">Point</th>
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Action</th>
@@ -43,12 +44,14 @@
         <tbody>
           @php($i=1)
           @foreach ($purchases as $purchase)
+          @php($user=\DB::table('users')->where('id',$purchase->user_id)->first())
+          @php($item= \DB::table('items')->where('id',$purchase->item_id)->first())
             <tr class="bg-gray-100">
                 <td class="border px-4 py-2">{{$i++}}</td>
-                <td class="border px-4 py-2">{{$purchase->user_id}}</td>
-                <td class="border px-4 py-2">{{$purchase->item_id }}</td>
-                <td class="border px-4 py-2">{{$purchase->point}}</td>
-               
+                <td class="border px-4 py-2">{{$user->name}}</td>
+                <td class="border px-4 py-2">{{$item->title }}</td>
+                <td class="border px-4 py-2"><img src="{{asset($item->img)}}" height="100" width="100" alt=""></td>
+                <td class="border px-4 py-2">{{$item->point }}</td>
                 @if($purchase->status==1)
                 <td class="border px-4 py-2">Approved</td>
                 @else
@@ -56,9 +59,9 @@
                 @endif
                 <td class="border px-4 py-2">
                     @if($purchase->status==1)
-                    <a  href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-red-500 hover:bg-blue-700 text-white font-bold px-4 rounded">Pending</a>
+                    <a  href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-red-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Pending</a>
                     @else
-                    <a href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded ">Approved</a>
+                    <a href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-green-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Approved</a>
                     @endif
                 </td>
             </tr>
