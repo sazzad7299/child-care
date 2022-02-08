@@ -59,9 +59,9 @@
                 @endif
                 <td class="border px-4 py-2">
                     @if($purchase->status==1)
-                    <a  href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-red-500 hover:bg-blue-700 text-white font-bold px-4 rounded">Pending</a>
+                    <a  href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-red-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Pending</a>
                     @else
-                    <a href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded ">Approved</a>
+                    <a href="{{ route('admin.editPurchaseStatus',['id'=>$purchase->id]) }}" class="bg-green-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Approved</a>
                     @endif
                 </td>
             </tr>

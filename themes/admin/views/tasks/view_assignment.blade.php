@@ -33,8 +33,8 @@
         <thead>
             <tr class="bg-gray-100">
                 <th class="px-4 py-2 w-20">#.</th>
-                <th class="px-4 py-2">User_id</th>
-                <th class="px-4 py-2">Task_id</th>
+                <th class="px-4 py-2">User Name</th>
+                <th class="px-4 py-2">Task Name</th>
                 <th class="px-4 py-2">Point</th>
                 <th class="px-4 py-2">Image</th>
                 <th class="px-4 py-2">Status</th>
@@ -44,18 +44,21 @@
         <tbody>
           @php($i=1)
           @foreach ($assignments as $assignment)
+          @php($user=\DB::table('users')->where('id',$assignment->user_id)->first())
+          @php($task= \DB::table('tasks')->where('id',$assignment->task_id)->first())
             <tr class="bg-gray-100">
                 <td class="border px-4 py-2">{{$i++}}</td>
-                <td class="border px-4 py-2">{{$assignment->user_id}}</td>
-                <td class="border px-4 py-2">{!!$assignment->task_id !!}</td>
-                <td class="border px-4 py-2">{{$assignment->point}}</td>
+                <td class="border px-4 py-2">{{$user->name}}</td>
+                <td class="border px-4 py-2">{{$task->title }}</td>
+                <td class="border px-4 py-2">{{$task->point}}</td>
              {{-- img or pdf --}}
                 @if($assignment->pdf=="NULL")
                 <td class="border px-4 ">
                   <img src="{{asset($assignment->img)}}" alt="">
                 </td>
                 @elseif($assignment->img=="NULL")
-                <td class="border px-4 py-2">{{$assignment->pdf}}</td>
+                <td class="border px-4 py-2"><embed src="{{asset($assignment->pdf)}}" height= "150" width="150"></td>
+   
                 @endif
               {{-- status --}}              
                 @if($assignment->status==1)
@@ -67,7 +70,7 @@
                 @endif
 
                 <td class="border px-4 py-2">
-                    <a type="btn" href="{{ route('admin.assignment_details',['id'=>$assignment->id]) }}" class="bg-yellow-400	hover:bg-yellow-700 text-white font-bold  px-4 rounded">View</a>
+                    <a type="btn" href="{{ route('admin.assignment_details',['id'=>$assignment->id]) }}" class="bg-yellow-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">View Details</a>
         
                     {{-- <a type="btn" href="" class="bg-red-500 hover:bg-red-700 text-white font-bold  px-4 rounded">Return</a> --}}
                 </td>

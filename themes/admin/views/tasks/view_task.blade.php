@@ -30,7 +30,7 @@
         </div>
       @endif
 
-    <table  class="table-fixed w-full">
+    <table class="table-auto w-full">
         <thead>
           <tr  class="bg-gray-100">
             <th class="px-4 py-2 w-20">#</th>
@@ -53,17 +53,18 @@
                 <td class="border px-4 py-2">{{$task->topic}}</td>
                 @if($task->pdf=="NULL")
                 <td class="border px-4 ">
-                  <img src="{{asset($task->img)}}" alt="">
+                  <img src="{{asset($task->img)}}" height="150" alt="">
                 </td>
                 @elseif($task->img=="NULL")
-                <td class="border px-4 py-2">{{$task->pdf}}</td>
+
+                 <td class="border px-4 py-2"><embed src="{{asset($task->pdf)}}" height= "300" width="350"></td>
                 @endif
 
                 <td class="border px-4 py-2">{{$task->point}}</td>
                 <td class="border px-4 py-2">{{$task->exp_date}}</td>
                 <td class="border px-4 py-2">
-                  <a type="btn" href="{{ route('admin.editTask',['id'=>$task->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5  px-2 rounded">Edit</a>
-                      <a type="btn" href="{{ route('admin.deleteTask',['id'=>$task->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-0.5 px-2 rounded">Delete</a>
+                  <a type="btn" href="{{ route('admin.editTask',['id'=>$task->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  px-4 rounded">Edit</a>
+                      <a type="btn" href="{{ route('admin.deleteTask',['id'=>$task->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 rounded">Delete</a>
                   </td>
               </tr>
             @endforeach
