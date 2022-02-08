@@ -83,7 +83,7 @@
                         <li class="nav-item">
                             <a class="nav-link"> <i class="fas fa-trophy"></i>
                       
-                        @php( $currentDay = Carbon\Carbon::tomorrow()->format('l')=="Tuesday")                 
+                        @php( $currentDay = Carbon\Carbon::today()->format('l')=="Tuesday")                 
                             @if($currentDay)
                                 @php($sum=\DB::table('std_assignments')->where('user_id', Auth::user()->id)
                                 ->where('status','1')->sum('point')) 
@@ -118,7 +118,9 @@
         </nav>
 
         <main class="py-4">
-            <h1 class="text-success">{{Session::get('success')}}</h1>
+            <div class="text-center">
+                <h1 class="text-success">{{Session::get('success')}}</h1>
+            </div>
             @yield('content')
         </main>
     </div>

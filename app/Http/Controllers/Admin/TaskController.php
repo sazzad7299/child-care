@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Input\Input;
 use App\Models\Std_assignment;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
     public function addTask(Request $request)
     {
+        // return Carbon::today()->format('l');
  
         if($request->isMethod('post')){
 

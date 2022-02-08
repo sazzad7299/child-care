@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="text-center">
-        <h1 class="text-success">{{Session::get('success')}}</h1>
-       
-    </div>
     <div class="row">
         <div class="col-md-8 col-sm-12">
             <h1><em class="fas fa-tasks" style="color: orange; background:rgb(163, 81, 136);padding:8px; border:1px; border-radius:20px"></em> {{ $item->title }}</h1>

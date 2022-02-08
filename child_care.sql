@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2022 at 07:46 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Feb 08, 2022 at 06:45 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -84,7 +83,8 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `title`, `desc`, `point`, `img`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'asdjfajshF', '<p>fsBKASDJFE</p>', 20, 'item/image/1644019576.png', '1', '2022-02-04 18:06:16', '2022-02-04 18:06:16');
+(2, 'asdjfajshF', '<p>fsBKASDJFE</p>', 20, 'item/image/1644019576.png', '1', '2022-02-04 18:06:16', '2022-02-04 18:06:16'),
+(3, 'xdgvbxdfhbx', '<p>xdfhxfhxf</p>', 100, 'item/image/1644078860.png', '1', '2022-02-05 10:34:20', '2022-02-05 10:34:20');
 
 -- --------------------------------------------------------
 
@@ -108,7 +108,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2021_02_19_211716_create_admins_table', 1),
 (5, '2022_02_04_101647_create_tasks_table', 2),
-(6, '2022_02_04_233344_create_items_table', 3);
+(6, '2022_02_04_233344_create_items_table', 3),
+(10, '2022_02_06_191645_create_std_assignments_table', 4),
+(11, '2022_02_07_083819_create_purchases_table', 5);
 
 -- --------------------------------------------------------
 
@@ -121,6 +123,57 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchases`
+--
+
+CREATE TABLE `purchases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `item_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `point` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchases`
+--
+
+INSERT INTO `purchases` (`id`, `user_id`, `item_id`, `point`, `status`, `created_at`, `updated_at`) VALUES
+(51, '4', '2', '20', '0', '2022-02-07 23:37:11', '2022-02-07 23:37:11'),
+(52, '4', '3', '100', '0', '2022-02-07 23:40:41', '2022-02-07 23:40:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `std_assignments`
+--
+
+CREATE TABLE `std_assignments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `task_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pdf` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `point` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `point_sum` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `std_assignments`
+--
+
+INSERT INTO `std_assignments` (`id`, `user_id`, `task_id`, `img`, `pdf`, `point`, `status`, `point_sum`, `created_at`, `updated_at`) VALUES
+(9, '4', '32', 'assignment/image/1644182708.png', 'NULL', '100', '1', '80', '2022-02-06 15:25:08', '2022-02-07 14:04:30'),
+(10, '4', '32', 'assignment/image/1644182708.png', 'NULL', '100', '1', '80', '2022-02-06 15:25:08', '2022-02-07 14:51:00');
 
 -- --------------------------------------------------------
 
@@ -146,7 +199,9 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `title`, `inst`, `img`, `pdf`, `topic`, `point`, `exp_date`, `created_at`, `updated_at`) VALUES
-(31, 'check2', '<p>afnakd,</p>', 'document/image/1644012885.png', 'NULL', 'Bangla', 100, '2022-02-17', '2022-02-04 16:14:45', '2022-02-04 17:02:01');
+(31, 'check2', '<p>afnakd,</p>', 'document/image/1644012885.png', 'NULL', 'Bangla', 100, '2022-02-17', '2022-02-04 16:14:45', '2022-02-04 17:02:01'),
+(32, 'fhndfhsdr', '<p>asgsdhrsdt</p>', 'document/image/1644078961.png', 'NULL', 'zrfhrfh', 100, '2022-03-10', '2022-02-05 10:36:01', '2022-02-05 10:36:01'),
+(33, 'abc', '<p>tjhnstrjhyseesthysate</p>', 'NULL', 'document/file/1644248128.pdf', 'bangla', 100, '2022-02-24', '2022-02-07 09:35:28', '2022-02-07 09:35:28');
 
 -- --------------------------------------------------------
 
@@ -170,7 +225,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'student', 'student@gmail.com', NULL, '$2y$10$AWjpjiIJyPkEphXNVbY7qOrAzB.I49Fhei2XmWE2bGS6VEiEM8Gce', NULL, '2022-02-04 18:40:21', '2022-02-04 18:40:21');
+(4, 'Zulkar Nine', 'zulkarnine43@gmail.com', NULL, '$2y$10$1K6U7ty2DQjife7WFCyjlO1EUHIac.hwau7IhBdDbN2hJNAzHVx92', 'irskNYC3EFm7VyJRMFDEPzzSRjLcyBWSUPssl58p8fiGYSSjYR9w6vkP9LU8', '2022-02-06 07:51:40', '2022-02-06 11:50:03'),
+(5, 'Mosiur Rahman', 'masiur.ma@gmail.com', NULL, '$2y$10$IxF1Kw64geIKBa5x1RQcReDYm5n6pzWo4d.JzNbJEU4zSOyNVBtfK', NULL, '2022-02-07 09:40:28', '2022-02-07 09:40:28');
 
 --
 -- Indexes for dumped tables
@@ -209,6 +265,18 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `purchases`
+--
+ALTER TABLE `purchases`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `std_assignments`
+--
+ALTER TABLE `std_assignments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
@@ -241,25 +309,37 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `purchases`
+--
+ALTER TABLE `purchases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `std_assignments`
+--
+ALTER TABLE `std_assignments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
